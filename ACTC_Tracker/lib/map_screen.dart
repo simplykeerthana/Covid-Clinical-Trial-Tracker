@@ -7,10 +7,10 @@ class MapScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: !kIsWeb ? '/map_screen_mobile' : '/map_screen_web', //base route(HomePage)
+      initialRoute: !kIsWeb ? '/map_screen_mobile' : '/map_screen_web', 
       routes:{
         '/map_screen_mobile': (context) =>  MapScreenMobile(),
-        '/map_screen_web': (context) => MapScreenWeb(), //homepage
+        '/map_screen_web': (context) => MapScreenWeb(), 
       },
     );
   }
