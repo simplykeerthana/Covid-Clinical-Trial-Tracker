@@ -7,15 +7,7 @@
         {
             "name": "Flutter",
             "type": "dart",
-            "request": "launch",
-            "program": "lib/main.dart"
-        },
-
-        {
-            "name": "Dart",
-            "program": "lib/main.dart",
-            "request": "launch",
-            "type": "dart"
+            "request": "launch"
         }
     ]
 }
