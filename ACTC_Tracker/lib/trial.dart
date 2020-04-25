@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:json_annotation/json_annotation.dart';
 
 import 'package:flutter/material.dart';
+import 'package:geocoder/geocoder.dart';
 
 //you plan to through this but only display the important one right?
 // so right now we need to get the location and map the marker to the map 
