@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-//import 'package:google_maps/google_maps.dart' hide Icon;
-//import 'dart:html';
+import 'package:google_maps/google_maps.dart' hide Icon;
+import 'dart:html';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({Key key, this.title}) : super(key: key);
@@ -44,7 +44,7 @@ class _MapScreenState extends State<MapScreen> {
       ),
     );
   }
-  /*
+  
   Widget getMap() {
     String htmlId = "7";
 
@@ -74,5 +74,6 @@ class _MapScreenState extends State<MapScreen> {
     });
 
     return HtmlElementView(viewType: htmlId);
-    */
+    
   }
+}
