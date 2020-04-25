@@ -58,50 +58,61 @@ class Trial {
   bool Bridgingflagtruefalse;
   String Bridgedtype;
   String resultsyesno;
+  double latitude;
+  double longitude;
 
-  Trial(this.TrialID,this.LastRefreshedon,this.Publictitle,this.Scientifictitle,this.Acronym,this.Primarysponsor,this.Dateregistration,this.Dateregistration3,this.Exportdate,this.SourceRegister,this.webaddress,this.RecruitmentStatus,this.otherrecords,this.Inclusionagemin,this.Inclusionagemax,this.Inclusiongender,this.Dateenrollement,this.Targetsize,this.Studytype,this.Studydesign,this.Phase,this.Countries,this.ContactFirstname,this.ContactLastname,this.ContactAddress,this.ContactEmail,this.ContactTel,this.ContactAffiliation,this.InclusionCriteria,this.ExclusionCriteria,this.Condition,this.Intervention,this.Primaryoutcome,this.resultsdateposted,this.resultsdatecompleted,this.resultsurllink,this.Retrospectiveflag,this.Bridgingflagtruefalse,this.Bridgedtype,this.resultsyesno);
+  Trial(this.TrialID,this.LastRefreshedon,this.Publictitle,this.Scientifictitle,this.Acronym,this.Primarysponsor,this.Dateregistration,this.Dateregistration3,this.Exportdate,this.SourceRegister,this.webaddress,this.RecruitmentStatus,this.otherrecords,this.Inclusionagemin,this.Inclusionagemax,this.Inclusiongender,this.Dateenrollement,this.Targetsize,this.Studytype,this.Studydesign,this.Phase,this.Countries,this.ContactFirstname,this.ContactLastname,this.ContactAddress,this.ContactEmail,this.ContactTel,this.ContactAffiliation,this.InclusionCriteria,this.ExclusionCriteria,this.Condition,this.Intervention,this.Primaryoutcome,this.resultsdateposted,this.resultsdatecompleted,this.resultsurllink,this.Retrospectiveflag,this.Bridgingflagtruefalse,this.Bridgedtype,this.resultsyesno) {
+    updateCoordinates();
+  }
 
   Trial.fromJson(dynamic json)
   {
     TrialID = json["TrialID"];
     LastRefreshedon = json["Last Refreshed on"];
-    Publictitle = json["Publictitle"];
-    Scientifictitle = json["Scientifictitle"];
+    Publictitle = json["Public title"];
+    Scientifictitle = json["Scientific title"];
     Acronym = json["Acronym"];
-    Primarysponsor = json["Primarysponsor"];
-    Dateregistration = json["Dateregistration"];
-    Dateregistration3 = json["Dateregistration3"];
-    Exportdate = json["Exportdate"];
-    SourceRegister = json["SourceRegister"];
-    webaddress = json["webaddress"];
-    RecruitmentStatus = json["RecruitmentStatus"];
-    otherrecords = json["otherrecords"];
-    Inclusionagemin = json["Inclusionagemin"];
-    Inclusionagemax = json["Inclusionagemax"];
-    Inclusiongender = json["Inclusiongender"];
-    Dateenrollement = json["Dateenrollement"];
-    Targetsize = json["Targetsize"];
-    Studytype = json["Studytype"];
-    Studydesign = json["Studydesign"];
+    Primarysponsor = json["Primary sponsor"];
+    Dateregistration = json["Date registration"];
+    Dateregistration3 = json["Date registration3"];
+    Exportdate = json["Export date"];
+    SourceRegister = json["Source Register"];
+    webaddress = json["web address"];
+    RecruitmentStatus = json["Recruitment Status"];
+    otherrecords = json["other records"];
+    Inclusionagemin = json["Inclusion agemin"];
+    Inclusionagemax = json["Inclusion agemax"];
+    Inclusiongender = json["Inclusion gender"];
+    Dateenrollement = json["Date enrollement"];
+    Targetsize = json["Target size"];
+    Studytype = json["Study type"];
+    Studydesign = json["Study design"];
     Phase = json["Phase"];
     Countries = json["Countries"];
-    ContactFirstname = json["ContactFirstname"];
-    ContactLastname = json["ContactLastname"];
-    ContactAddress = json["ContactAddress"];
-    ContactEmail = json["ContactEmail"];
-    ContactTel = json["ContactTel"];
-    ContactAffiliation = json["ContactAffiliation"];
-    InclusionCriteria = json["InclusionCriteria"];
-    ExclusionCriteria = json["ExclusionCriteria"];
+    ContactFirstname = json["Contact Firstname"];
+    ContactLastname = json["Contact Lastname"];
+    ContactAddress = json["Contact Address"];
+    ContactEmail = json["Contact Email"];
+    ContactTel = json["Contact Tel"];
+    ContactAffiliation = json["Contact Affiliation"];
+    InclusionCriteria = json["Inclusion Criteria"];
+    ExclusionCriteria = json["Exclusion Criteria"];
     Condition = json["Condition"];
     Intervention = json["Intervention"];
-    Primaryoutcome = json["Primaryoutcome"];
-    resultsdateposted = json["resultsdateposted"];
-    resultsdatecompleted = json["resultsdatecompleted"];
-    resultsurllink = json["resultsurllink"];
-    Retrospectiveflag = json["Retrospectiveflag"];
-    Bridgingflagtruefalse = json["Bridgingflagtruefalse"];
-    Bridgedtype = json["Bridgedtype"];
-    resultsyesno = json["resultsyesno"];
+    Primaryoutcome = json["Primary outcome"];
+    resultsdateposted = json["results date posted"];
+    resultsdatecompleted = json["results date completed"];
+    resultsurllink = json["results url link"];
+    Retrospectiveflag = json["Retrospective flag"];
+    Bridgingflagtruefalse = json["Bridging flag truefalse"];
+    Bridgedtype = json["Bridged type"];
+    resultsyesno = json["results yes no"];
+  }
+
+  updateCoordinates() async {
+    var addresses = await Geocoder.local.findAddressesFromQuery(this.ContactAddress);
+    var first = addresses.first;
+    this.latitude = first.coordinates.latitude;
+    this.longitude = first.coordinates.longitude;
   }
 }

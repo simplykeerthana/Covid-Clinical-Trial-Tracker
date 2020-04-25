@@ -2,6 +2,7 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:google_maps/google_maps.dart';
 import 'dart:ui' as ui;
+import  'trial.dart' as trial_Locations;
 
 class MapScreenWeb extends StatelessWidget {
   @override

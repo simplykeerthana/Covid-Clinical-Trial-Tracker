@@ -2,9 +2,28 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:json_annotation/json_annotation.dart';
+import 'trial.dart';
+import 'dart:async' show Future;
+import 'package:flutter/services.dart' show rootBundle;
 
 part 'locations.g.dart';
 
+
+Future<List<Trial>> getAllTrials() async {
+
+  // Retrieve the locations of Google offices
+  final responseString = await rootBundle.loadString('assets/COVID19-data.json');
+  List<dynamic> trials = json.decode(responseString);
+  List<Trial> trialObjects = [];
+  for (var trial in trials) {
+    trialObjects.add(Trial.fromJson(json.decode(trial))); 
+                                                  
+  }
+
+  return trialObjects;
+}
+
+/*
 @JsonSerializable()
 class LatLng {
   LatLng({
@@ -92,3 +111,4 @@ Future<Locations> getGoogleOffices() async {
         uri: Uri.parse(googleLocationsURL));
   }
 }
+*/
