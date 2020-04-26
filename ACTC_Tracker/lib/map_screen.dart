@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'map_screen_mobile.dart';
-import 'map_screen_web.dart';
+//import 'map_screen_web.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 class MapScreen extends StatelessWidget {
@@ -10,7 +10,7 @@ class MapScreen extends StatelessWidget {
       initialRoute: !kIsWeb ? '/map_screen_mobile' : '/map_screen_web', 
       routes:{
         '/map_screen_mobile': (context) =>  MapScreenMobile(),
-        '/map_screen_web': (context) => MapScreenWeb(), 
+        //'/map_screen_web': (context) => MapScreenWeb(), 
       },
     );
   }

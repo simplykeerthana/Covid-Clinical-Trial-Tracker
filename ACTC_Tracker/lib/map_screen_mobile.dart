@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'locations.dart' as locations;
-import 'package:geocoder/geocoder.dart';
 import  'trial.dart';
 //import 'popup.dart' as trial_locations;
 
@@ -33,13 +32,12 @@ class  _MapScreenState extends State<MapScreenMobile> {
       _markers.clear();
       for (Trial trial in trials) {
         //print(trial.latitude, trial.longitude);
-        print(LatLng(trial.latitude, trial.longitude));
         final marker = Marker(
           markerId: MarkerId(trial.Publictitle),
           position: LatLng(trial.latitude, trial.longitude),
           infoWindow: InfoWindow(
             title: trial.Publictitle,
-            snippet: trial.ContactAddress,
+            snippet: trial.ContactAddress + "\n, " + trial.webaddress,
           ),
         );
         _markers[trial.Publictitle] = marker;

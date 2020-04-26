@@ -1,7 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
-import 'package:http/http.dart' as http;
-import 'package:json_annotation/json_annotation.dart';
 import 'trial.dart';
 import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;
@@ -12,18 +9,20 @@ part 'locations.g.dart';
 Future<List<Trial>> getAllTrials() async {
 
   // Retrieve the locations of Google offices
-  final responseString = await rootBundle.loadString('assets/COVID19-data.json');
+  final responseString = await rootBundle.loadString('assets/covid_datta.json');
   List<dynamic> trials = json.decode(responseString);
   List<Trial> trialObjects = <Trial>[];
   var i = 0;
   for (var trial in trials) {
-    Trial obj = Trial.fromJson(trial);
-    print(obj);
-    trialObjects.add(obj);    
-    i++;                  
-    if (i == 50) {
-      break;
-    }                        
+      Trial obj = Trial.fromJson(trial);
+      print(obj.latitude);
+      print(obj.longitude);
+      trialObjects.add(obj);    
+      i++;                  
+      // if (i == 50) {
+      //   break;
+      // }      
+             
   }
 
   return trialObjects;

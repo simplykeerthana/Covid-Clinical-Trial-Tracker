@@ -1,11 +1,5 @@
-import 'dart:convert';
-import 'dart:io';
-import 'package:flutter/rendering.dart';
-import 'package:http/http.dart' as http;
-import 'package:json_annotation/json_annotation.dart';
-
-import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
+import 'package:geolocator/geolocator.dart';
 
 //you plan to through this but only display the important one right?
 // so right now we need to get the location and map the marker to the map 
@@ -63,8 +57,8 @@ class Trial {
   double latitude = 0.0;
   double longitude = 0.0;
 
-  Trial({this.TrialID,this.LastRefreshedon,this.Publictitle,this.Scientifictitle,this.Acronym,this.Primarysponsor,this.Dateregistration,this.Dateregistration3,this.Exportdate,this.SourceRegister,this.webaddress,this.RecruitmentStatus,this.otherrecords,this.Inclusionagemin,this.Inclusionagemax,this.Inclusiongender,this.Dateenrollement,this.Targetsize,this.Studytype,this.Studydesign,this.Phase,this.Countries,this.ContactFirstname,this.ContactLastname,this.ContactAddress,this.ContactEmail,this.ContactTel,this.ContactAffiliation,this.InclusionCriteria,this.ExclusionCriteria,this.Condition,this.Intervention,this.Primaryoutcome,this.resultsdateposted,this.resultsdatecompleted,this.resultsurllink,this.Retrospectiveflag,this.Bridgingflagtruefalse,this.Bridgedtype,this.resultsyesno}) {
-    getCoordinates();
+  Trial({this.TrialID,this.LastRefreshedon,this.Publictitle,this.Scientifictitle,this.Acronym,this.Primarysponsor,this.Dateregistration,this.Dateregistration3,this.Exportdate,this.SourceRegister,this.webaddress,this.RecruitmentStatus,this.otherrecords,this.Inclusionagemin,this.Inclusionagemax,this.Inclusiongender,this.Dateenrollement,this.Targetsize,this.Studytype,this.Studydesign,this.Phase,this.Countries,this.ContactFirstname,this.ContactLastname,this.ContactAddress,this.ContactEmail,this.ContactTel,this.ContactAffiliation,this.InclusionCriteria,this.ExclusionCriteria,this.Condition,this.Intervention,this.Primaryoutcome,this.resultsdateposted,this.resultsdatecompleted,this.resultsurllink,this.Retrospectiveflag,this.Bridgingflagtruefalse,this.Bridgedtype,this.resultsyesno, this.latitude, this.longitude}) {
+    //getCoordinates();
   }
 
   factory Trial.fromJson(Map<String, dynamic> json)
@@ -108,15 +102,21 @@ class Trial {
     Retrospectiveflag : json["Retrospective flag"] as String,
     Bridgingflagtruefalse : json["Bridging flag truefalse"] as bool,
     Bridgedtype : json["Bridged type"] as String,
-    resultsyesno : json["results yes no"]);
+    resultsyesno : json["results yes no"] as String,
+    latitude: json["lat"] as double,
+    longitude: json["lang"] as double,
+    );
+    
   }
 
   Future<void> getCoordinates() async {
-    var addresses = await geo.findAddressesFromQuery(this.ContactAddress);
+    //var addresses = await geo.findAddressesFromQuery(this.ContactAddress);
+    
     try {
-      var firstAddress = addresses.first;
-      this.latitude = firstAddress.coordinates.latitude;
-      this.longitude = firstAddress.coordinates.longitude;
+      List<Placemark> placemark = await Geolocator().placemarkFromAddress(this.ContactAddress);
+      var firstAddress = placemark.first.position;
+      this.latitude = firstAddress.latitude;
+      this.longitude = firstAddress.longitude;
     }
     catch (Error) {
       print("No addresses");
