@@ -41,16 +41,18 @@ class  _MapScreenState extends State<MapScreenMobile> {
       _markers.clear();
       for (Trial trial in trials) {
         //print(trial.latitude, trial.longitude);
-        final marker = Marker(
-          markerId: MarkerId(trial.Publictitle),
-          position: LatLng(trial.latitude, trial.longitude),
-          infoWindow: InfoWindow(
-            title: trial.Publictitle,
-            snippet: trial.webaddress,
-            onTap: () => { _launchURL(trial.webaddress) },
-          ),
-        );
-        _markers[trial.Publictitle] = marker;
+        if (trial.latitude != 0.0 && trial.longitude != 0.0) {
+          final marker = Marker(
+            markerId: MarkerId(trial.Publictitle),
+            position: LatLng(trial.latitude, trial.longitude),
+            infoWindow: InfoWindow(
+              title: trial.Publictitle,
+              snippet: trial.webaddress,
+              onTap: () => { _launchURL(trial.webaddress) },
+            ),
+          );
+          _markers[trial.Publictitle] = marker;
+        }
       }
     });
   }

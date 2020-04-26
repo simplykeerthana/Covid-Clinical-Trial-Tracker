@@ -63,20 +63,15 @@ class _HomeScreenState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              stops: [0.1, 0.4, 0.7, 0.9],
-              colors: [
-                Color(0xFF3594DD),
-                Color(0xFF4563DB),
-                Color(0xFF5036D5),
-                Color(0xFF5B16D0),
-              ],
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [Colors.blue, Colors.red],
             ),
           ),
           child: Padding(
@@ -87,7 +82,10 @@ class _HomeScreenState extends State<Home> {
                 Container(
                   alignment: Alignment.centerRight,
                   child: FlatButton(
-                    onPressed: () => print('Skip'),
+                    onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (BuildContext context) => MapScreen()
+                      )
+                    ),
                     child: Text(
                       'Skip',
                       style: TextStyle(
@@ -111,12 +109,13 @@ class _HomeScreenState extends State<Home> {
                       Padding(
                         padding: EdgeInsets.all(40.0),
                         child: Column(
+                          
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Center(
                               child: Image(
                                 image: AssetImage(
-                                  'assets/images/onboarding0.png',
+                                  'assets/images/clinical_trial.png',
                                 ),
                                 height: 300.0,
                                 width: 300.0,
@@ -124,7 +123,7 @@ class _HomeScreenState extends State<Home> {
                             ),
                             SizedBox(height: 30.0),
                             Text(
-                              'Connect people\naround the world',
+                              'COVID Clinical\nActive trial tracker',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: 'CM Sans Serif',
@@ -134,7 +133,44 @@ class _HomeScreenState extends State<Home> {
                             ),
                             SizedBox(height: 15.0),
                             Text(
-                              'Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore et.',
+                              'Clinical Trials are research studies performed in people that are aimed at evaluating a medical, surgical, or behavioral intervention.', //I can't write instruction 
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.0,
+                                height: 1.2,
+                              ),
+                              
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(40.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Center(
+                              child: Image(
+                                image: AssetImage(
+                                  'assets/images/CDC_Corona.jpg',
+                                ),
+                                height: 300.0,
+                                width: 300.0,
+                              ),
+                            ),
+                            SizedBox(height: 30.0),
+                            Text(
+                              'What is this app about?',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'CM Sans Serif',
+                                fontSize: 26.0,
+                                height: 1.5,
+                              ),
+                            ),
+                            SizedBox(height: 15.0),
+                            Text(
+                              'This app is about tracking any active trials or drug and vaccine related to COVID',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18.0,
@@ -152,7 +188,7 @@ class _HomeScreenState extends State<Home> {
                             Center(
                               child: Image(
                                 image: AssetImage(
-                                  'assets/images/onboarding1.png',
+                                 'assets/images/WHO_Logo.png',
                                 ),
                                 height: 300.0,
                                 width: 300.0,
@@ -160,7 +196,7 @@ class _HomeScreenState extends State<Home> {
                             ),
                             SizedBox(height: 30.0),
                             Text(
-                              'Live your life smarter\nwith us!',
+                              'This data is extracted from WHO',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: 'CM Sans Serif',
@@ -170,43 +206,7 @@ class _HomeScreenState extends State<Home> {
                             ),
                             SizedBox(height: 15.0),
                             Text(
-                              'Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore et.',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18.0,
-                                height: 1.2,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(40.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Center(
-                              child: Image(
-                                image: AssetImage(
-                                  'assets/images/onboarding2.png',
-                                ),
-                                height: 300.0,
-                                width: 300.0,
-                              ),
-                            ),
-                            SizedBox(height: 30.0),
-                            Text(
-                              'Get a new experience\nof imagination',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'CM Sans Serif',
-                                fontSize: 26.0,
-                                height: 1.5,
-                              ),
-                            ),
-                            SizedBox(height: 15.0),
-                            Text(
-                              'Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore et.',
+                              'Click on marker and go the respective url for more information',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18.0,
@@ -270,12 +270,13 @@ class _HomeScreenState extends State<Home> {
               child: GestureDetector(
                 onTap: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: (BuildContext context) => MapScreen()
-                      )),
+                  )
+                ),
                 child: Center(
                   child: Padding(
                     padding: EdgeInsets.only(bottom: 30.0),
                     child: Text(
-                      'Get started',
+                      'Go to the Map',
                       style: TextStyle(
                         color: Color(0xFF5B16D0),
                         fontSize: 20.0,

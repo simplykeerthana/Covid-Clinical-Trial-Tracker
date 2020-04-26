@@ -12,7 +12,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-        Duration(seconds: 3), // Make the Splash Screen last for 3s
+        Duration(seconds: 5), // Make the Splash Screen last for 3s
         () => Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (BuildContext context) => Home()
             ) //MaterialPageRoute
@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
-        child: Image.asset('assets/images/download.jpg', width: 300, height: 300),
+        child: Image.asset('assets/images/clinical_trial.png', width: 300, height: 300),
       ),
     );
   }
