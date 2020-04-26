@@ -59,11 +59,11 @@ class Trial {
   bool Bridgingflagtruefalse;
   String Bridgedtype;
   String resultsyesno;
-  double latitude;
-  double longitude;
+  double latitude = 0.0;
+  double longitude = 0.0;
 
   Trial({this.TrialID,this.LastRefreshedon,this.Publictitle,this.Scientifictitle,this.Acronym,this.Primarysponsor,this.Dateregistration,this.Dateregistration3,this.Exportdate,this.SourceRegister,this.webaddress,this.RecruitmentStatus,this.otherrecords,this.Inclusionagemin,this.Inclusionagemax,this.Inclusiongender,this.Dateenrollement,this.Targetsize,this.Studytype,this.Studydesign,this.Phase,this.Countries,this.ContactFirstname,this.ContactLastname,this.ContactAddress,this.ContactEmail,this.ContactTel,this.ContactAffiliation,this.InclusionCriteria,this.ExclusionCriteria,this.Condition,this.Intervention,this.Primaryoutcome,this.resultsdateposted,this.resultsdatecompleted,this.resultsurllink,this.Retrospectiveflag,this.Bridgingflagtruefalse,this.Bridgedtype,this.resultsyesno}) {
-    updateCoordinates();
+    getCoordinates();
   }
 
   factory Trial.fromJson(Map<String, dynamic> json)
@@ -110,13 +110,11 @@ class Trial {
     resultsyesno : json["results yes no"]);
   }
 
-  void updateCoordinates() async {
-    var addresses = await Geocoder.local.findAddressesFromQuery(this.ContactAddress);
-    
-    var first = addresses.first;
-    print(first);
-    this.latitude = first.coordinates.latitude;
-    this.longitude = first.coordinates.longitude;
+  Future<void> getCoordinates() async {
+    var addresses = await Geocoder.google("AIzaSyBBo2X0aDAveBYjw4M7jsRSD4lSgBm_ago").findAddressesFromQuery(this.ContactAddress);
+    var firstAddress = addresses.first;
+    this.latitude = firstAddress.coordinates.latitude;
+    this.longitude = firstAddress.coordinates.longitude;
   }
 
   @override 

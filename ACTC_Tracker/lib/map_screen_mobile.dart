@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'locations.dart' as locations;
+import 'package:geocoder/geocoder.dart';
 import  'trial.dart';
 //import 'popup.dart' as trial_locations;
 
@@ -27,13 +28,12 @@ class MapScreenMobile extends StatefulWidget {
 class  _MapScreenState extends State<MapScreenMobile> {
   final Map<String, Marker> _markers = {};
   Future<void> _onMapCreated(GoogleMapController controller) async {
-    List<Trial> trials = await locations.getAllTrials();
+    final trials = await locations.getAllTrials();
     setState(() {
       _markers.clear();
-      for (final trial in trials) {
+      for (Trial trial in trials) {
         //print(trial.latitude, trial.longitude);
         print(LatLng(trial.latitude, trial.longitude));
-
         final marker = Marker(
           markerId: MarkerId(trial.Publictitle),
           position: LatLng(trial.latitude, trial.longitude),

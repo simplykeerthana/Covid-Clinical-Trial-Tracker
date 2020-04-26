@@ -5,7 +5,13 @@ class Home extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-    body: SafeArea(
+      appBar: AppBar(
+        backgroundColor: Colors.lightBlue[400],
+        title: Text('Home Screen'),
+        centerTitle: true,
+        elevation: 0,
+      ),//AppBar
+      body: SafeArea(
         child: FlatButton.icon(
           onPressed: () {
             Navigator.pushNamed(context,'/map_screen');
