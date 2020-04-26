@@ -27,7 +27,7 @@ dependencies:
   video_player: ^0.10.1+5
   location: ^2.3.5
   google_maps_flutter: ^0.5.26+4
-  google_maps: ^3.4.1
+  google_maps: ^3.4.2
   http: ^0.12.0+1
   json_serializable: ^2.0.2
   geocoder: ^0.2.1

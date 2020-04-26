@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'locations.dart' as locations;
 import  'trial.dart';
-import 'popup.dart' as trial_locations;
+//import 'popup.dart' as trial_locations;
 
 
 class MapScreenMobile extends StatefulWidget {

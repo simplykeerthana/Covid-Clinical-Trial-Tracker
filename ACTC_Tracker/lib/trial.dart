@@ -61,55 +61,55 @@ class Trial {
   double latitude;
   double longitude;
 
-  Trial(this.TrialID,this.LastRefreshedon,this.Publictitle,this.Scientifictitle,this.Acronym,this.Primarysponsor,this.Dateregistration,this.Dateregistration3,this.Exportdate,this.SourceRegister,this.webaddress,this.RecruitmentStatus,this.otherrecords,this.Inclusionagemin,this.Inclusionagemax,this.Inclusiongender,this.Dateenrollement,this.Targetsize,this.Studytype,this.Studydesign,this.Phase,this.Countries,this.ContactFirstname,this.ContactLastname,this.ContactAddress,this.ContactEmail,this.ContactTel,this.ContactAffiliation,this.InclusionCriteria,this.ExclusionCriteria,this.Condition,this.Intervention,this.Primaryoutcome,this.resultsdateposted,this.resultsdatecompleted,this.resultsurllink,this.Retrospectiveflag,this.Bridgingflagtruefalse,this.Bridgedtype,this.resultsyesno) {
+  Trial({this.TrialID,this.LastRefreshedon,this.Publictitle,this.Scientifictitle,this.Acronym,this.Primarysponsor,this.Dateregistration,this.Dateregistration3,this.Exportdate,this.SourceRegister,this.webaddress,this.RecruitmentStatus,this.otherrecords,this.Inclusionagemin,this.Inclusionagemax,this.Inclusiongender,this.Dateenrollement,this.Targetsize,this.Studytype,this.Studydesign,this.Phase,this.Countries,this.ContactFirstname,this.ContactLastname,this.ContactAddress,this.ContactEmail,this.ContactTel,this.ContactAffiliation,this.InclusionCriteria,this.ExclusionCriteria,this.Condition,this.Intervention,this.Primaryoutcome,this.resultsdateposted,this.resultsdatecompleted,this.resultsurllink,this.Retrospectiveflag,this.Bridgingflagtruefalse,this.Bridgedtype,this.resultsyesno}) {
     updateCoordinates();
   }
 
-  Trial.fromJson(dynamic json)
+  factory Trial.fromJson(Map<String, dynamic> json)
   {
-    TrialID = json["TrialID"];
-    LastRefreshedon = json["Last Refreshed on"];
-    Publictitle = json["Public title"];
-    Scientifictitle = json["Scientific title"];
-    Acronym = json["Acronym"];
-    Primarysponsor = json["Primary sponsor"];
-    Dateregistration = json["Date registration"];
-    Dateregistration3 = json["Date registration3"];
-    Exportdate = json["Export date"];
-    SourceRegister = json["Source Register"];
-    webaddress = json["web address"];
-    RecruitmentStatus = json["Recruitment Status"];
-    otherrecords = json["other records"];
-    Inclusionagemin = json["Inclusion agemin"];
-    Inclusionagemax = json["Inclusion agemax"];
-    Inclusiongender = json["Inclusion gender"];
-    Dateenrollement = json["Date enrollement"];
-    Targetsize = json["Target size"];
-    Studytype = json["Study type"];
-    Studydesign = json["Study design"];
-    Phase = json["Phase"];
-    Countries = json["Countries"];
-    ContactFirstname = json["Contact Firstname"];
-    ContactLastname = json["Contact Lastname"];
-    ContactAddress = json["Contact Address"];
-    ContactEmail = json["Contact Email"];
-    ContactTel = json["Contact Tel"];
-    ContactAffiliation = json["Contact Affiliation"];
-    InclusionCriteria = json["Inclusion Criteria"];
-    ExclusionCriteria = json["Exclusion Criteria"];
-    Condition = json["Condition"];
-    Intervention = json["Intervention"];
-    Primaryoutcome = json["Primary outcome"];
-    resultsdateposted = json["results date posted"];
-    resultsdatecompleted = json["results date completed"];
-    resultsurllink = json["results url link"];
-    Retrospectiveflag = json["Retrospective flag"];
-    Bridgingflagtruefalse = json["Bridging flag truefalse"];
-    Bridgedtype = json["Bridged type"];
-    resultsyesno = json["results yes no"];
+    return Trial(TrialID : json["TrialID"] as String,
+    LastRefreshedon : json["Last Refreshed on"] as String,
+    Publictitle : json["Public title"] as String,
+    Scientifictitle : json["Scientific title"] as String,
+    Acronym : json["Acronym"] as String,
+    Primarysponsor : json["Primary sponsor"] as String,
+    Dateregistration : json["Date registration"] as String,
+    Dateregistration3 : json["Date registration3"] as String,
+    Exportdate : json["Export date"] as String,
+    SourceRegister : json["Source Register"] as String,
+    webaddress : json["web address"] as String,
+    RecruitmentStatus : json["Recruitment Status"] as String,
+    otherrecords : json["other records"] as String,
+    Inclusionagemin : json["Inclusion agemin"] as String,
+    Inclusionagemax : json["Inclusion agemax"] as String,
+    Inclusiongender : json["Inclusion gender"] as String,
+    Dateenrollement : json["Date enrollement"] as String,
+    Targetsize : json["Target size"] as String,
+    Studytype : json["Study type"] as String,
+    Studydesign : json["Study design"] as String,
+    Phase : json["Phase"] as String,
+    Countries : json["Countries"] as String,
+    ContactFirstname : json["Contact Firstname"] as String,
+    ContactLastname : json["Contact Lastname"] as String,
+    ContactAddress : json["Contact Address"] as String,
+    ContactEmail : json["Contact Email"] as String,
+    ContactTel : json["Contact Tel"] as String,
+    ContactAffiliation : json["Contact Affiliation"] as String,
+    InclusionCriteria : json["Inclusion Criteria"] as String,
+    ExclusionCriteria : json["Exclusion Criteria"] as String,
+    Condition : json["Condition"] as String,
+    Intervention : json["Intervention"] as String,
+    Primaryoutcome : json["Primary outcome"] as String,
+    resultsdateposted : json["results date posted"] as String,
+    resultsdatecompleted : json["results date completed"] as String,
+    resultsurllink : json["results url link"] as String,
+    Retrospectiveflag : json["Retrospective flag"] as String,
+    Bridgingflagtruefalse : json["Bridging flag truefalse"] as bool,
+    Bridgedtype : json["Bridged type"] as String,
+    resultsyesno : json["results yes no"]);
   }
 
-  updateCoordinates() async {
+  void updateCoordinates() async {
     var addresses = await Geocoder.local.findAddressesFromQuery(this.ContactAddress);
     var first = addresses.first;
     this.latitude = first.coordinates.latitude;

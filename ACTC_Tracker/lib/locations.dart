@@ -16,8 +16,8 @@ Future<List<Trial>> getAllTrials() async {
   List<dynamic> trials = json.decode(responseString);
   List<Trial> trialObjects = [];
   for (var trial in trials) {
-    trialObjects.add(Trial.fromJson(json.decode(trial))); 
-                                                  
+    print(trial);
+    trialObjects.add(Trial.fromJson(trial));                                                
   }
 
   return trialObjects;
