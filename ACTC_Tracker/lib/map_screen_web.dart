@@ -1,34 +1,10 @@
+import 'dart:html';
 import 'package:flutter/material.dart';
-class MapScreenWeb extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // Material is a conceptual piece of paper on which the UI appears.
-    return Material(
-      // Column is a vertical, linear layout.
-      child: Column(
-        children: <Widget>[
-          Expanded(
-            child: Center(
-              child: Text('Hello, world!'),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-/*import 'dart:html';
-
-
 import 'package:google_maps/google_maps.dart';
 import 'dart:ui' as ui;
-import 'trial.dart';
-import 'locations.dart' as location;
 
-class MapScreenWeb extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    String htmlId = "7";
+Widget MapScreenWeb() {
+  String htmlId = "7";
 
   // ignore: undefined_prefixed_name
   ui.platformViewRegistry.registerViewFactory(htmlId, (int viewId) {
@@ -56,7 +32,4 @@ class MapScreenWeb extends StatelessWidget {
   });
 
   return HtmlElementView(viewType: htmlId);
-  }
-  
 }
-*/

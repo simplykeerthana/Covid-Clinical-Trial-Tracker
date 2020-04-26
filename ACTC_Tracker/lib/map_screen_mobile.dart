@@ -51,7 +51,7 @@ class  _MapScreenState extends State<MapScreenMobile> {
   Widget build(BuildContext context) => MaterialApp(
         home: Scaffold(
           appBar: AppBar(
-            title: const Text('Google Office Locations'),
+            title: const Text('COVID-19 Clinical Trial Tracker'),
             backgroundColor: Colors.green[700],
           ),
           body: GoogleMap(
