@@ -20,7 +20,10 @@ Future<List<Trial>> getAllTrials() async {
     Trial obj = Trial.fromJson(trial);
     print(obj);
     trialObjects.add(obj);    
-    i++;                                           
+    i++;                  
+    if (i == 50) {
+      break;
+    }                        
   }
 
   return trialObjects;

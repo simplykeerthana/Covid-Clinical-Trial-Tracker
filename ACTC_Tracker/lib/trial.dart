@@ -19,6 +19,7 @@ import 'package:geocoder/geocoder.dart';
 // i dont think it will be slow ulsee we try to load evrthing 
 
 class Trial {
+  static final geo = Geocoder.google("AIzaSyBBo2X0aDAveBYjw4M7jsRSD4lSgBm_ago");
   String TrialID; //important
   String LastRefreshedon; //important
   String Publictitle; //important
@@ -111,10 +112,15 @@ class Trial {
   }
 
   Future<void> getCoordinates() async {
-    var addresses = await Geocoder.google("AIzaSyBBo2X0aDAveBYjw4M7jsRSD4lSgBm_ago").findAddressesFromQuery(this.ContactAddress);
-    var firstAddress = addresses.first;
-    this.latitude = firstAddress.coordinates.latitude;
-    this.longitude = firstAddress.coordinates.longitude;
+    var addresses = await geo.findAddressesFromQuery(this.ContactAddress);
+    try {
+      var firstAddress = addresses.first;
+      this.latitude = firstAddress.coordinates.latitude;
+      this.longitude = firstAddress.coordinates.longitude;
+    }
+    catch (Error) {
+      print("No addresses");
+    }
   }
 
   @override 
