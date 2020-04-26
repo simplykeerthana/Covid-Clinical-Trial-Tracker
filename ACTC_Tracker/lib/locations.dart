@@ -14,10 +14,16 @@ Future<List<Trial>> getAllTrials() async {
   // Retrieve the locations of Google offices
   final responseString = await rootBundle.loadString('assets/COVID19-data.json');
   List<dynamic> trials = json.decode(responseString);
-  List<Trial> trialObjects = [];
+  List<Trial> trialObjects = <Trial>[];
+  var i = 0;
   for (var trial in trials) {
-    print(trial);
-    trialObjects.add(Trial.fromJson(trial));                                                
+    Trial obj = Trial.fromJson(trial);
+    print(obj);
+    trialObjects.add(obj);    
+    i++;
+    if (i == 50) {
+      break;
+    }                                             
   }
 
   return trialObjects;

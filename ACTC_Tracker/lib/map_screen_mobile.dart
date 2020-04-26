@@ -31,6 +31,9 @@ class  _MapScreenState extends State<MapScreenMobile> {
     setState(() {
       _markers.clear();
       for (final trial in trials) {
+        //print(trial.latitude, trial.longitude);
+        print(LatLng(trial.latitude, trial.longitude));
+
         final marker = Marker(
           markerId: MarkerId(trial.Publictitle),
           position: LatLng(trial.latitude, trial.longitude),

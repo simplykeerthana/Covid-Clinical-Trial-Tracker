@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
 import 'package:json_annotation/json_annotation.dart';
 
@@ -111,8 +112,15 @@ class Trial {
 
   void updateCoordinates() async {
     var addresses = await Geocoder.local.findAddressesFromQuery(this.ContactAddress);
+    
     var first = addresses.first;
+    print(first);
     this.latitude = first.coordinates.latitude;
     this.longitude = first.coordinates.longitude;
+  }
+
+  @override 
+  String toString() {
+    return this.Publictitle;
   }
 }
