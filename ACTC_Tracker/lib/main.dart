@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'map_screen.dart';
-import 'home.dart';
+import 'splash_screen.dart';
 
 void main() => runApp(MaterialApp(
-  initialRoute: '/map_screen', //base route(HomePage)
+  initialRoute: '/home', //base route(HomePage)
   routes:{
     '/map_screen': (context) =>  MapScreen(),
-    '/home': (context) => Home(), //homepage
+    '/home': (context) => SplashScreen(), //homepage
   },
 ));

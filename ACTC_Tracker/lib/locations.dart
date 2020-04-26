@@ -9,7 +9,7 @@ part 'locations.g.dart';
 Future<List<Trial>> getAllTrials() async {
 
   // Retrieve the locations of Google offices
-  final responseString = await rootBundle.loadString('assets/covid_datta.json');
+  final responseString = await rootBundle.loadString('assets/covid_data_final.json');
   List<dynamic> trials = json.decode(responseString);
   List<Trial> trialObjects = <Trial>[];
   var i = 0;
@@ -18,11 +18,7 @@ Future<List<Trial>> getAllTrials() async {
       print(obj.latitude);
       print(obj.longitude);
       trialObjects.add(obj);    
-      i++;                  
-      // if (i == 50) {
-      //   break;
-      // }      
-             
+      i++;                               
   }
 
   return trialObjects;
