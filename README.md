@@ -1,17 +1,5 @@
 # ACTC_Tracker
 
-A new Flutter project.
+This mobile app tracks any active clinical trials or drug and vaccine related to the COVID-19 virus using the Flutter framework and the Google Maps API. The user can scroll across a world map, where markers are located to indicate where clinical trials are being done in the world. All of this information was obtained off of the WHO organization website through an updated spreadsheet. If the user taps on one of the markers, it displays the title of the clinical trial and a link to their website containing more information. If the user taps on the popup, it will instantly take them to the respective website. The user also has options to zoom in and out of the map.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
+You can clone this repo and try running it using "flutter run" if you have flutter and an Android/IOS emulator set up.
