@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'locations.dart' as locations;
 import  'trial.dart';
 //import 'popup.dart' as trial_locations;
@@ -24,7 +25,15 @@ class MapScreenMobile extends StatefulWidget {
   _MapScreenState createState() => _MapScreenState();
 }
 
+
 class  _MapScreenState extends State<MapScreenMobile> {
+  
+  void _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    }
+  }
+
   final Map<String, Marker> _markers = {};
   Future<void> _onMapCreated(GoogleMapController controller) async {
     final trials = await locations.getAllTrials();
@@ -37,7 +46,8 @@ class  _MapScreenState extends State<MapScreenMobile> {
           position: LatLng(trial.latitude, trial.longitude),
           infoWindow: InfoWindow(
             title: trial.Publictitle,
-            snippet: trial.ContactAddress + "\n, " + trial.webaddress,
+            snippet: trial.webaddress,
+            onTap: () => { _launchURL(trial.webaddress) },
           ),
         );
         _markers[trial.Publictitle] = marker;
@@ -49,7 +59,7 @@ class  _MapScreenState extends State<MapScreenMobile> {
   Widget build(BuildContext context) => MaterialApp(
         home: Scaffold(
           appBar: AppBar(
-            title: const Text('COVID-19 Clinical Trial Tracker'),
+            title: const Text('Active COVID-19 Clinical Trials Tracker'),
             backgroundColor: Colors.green[700],
           ),
           body: GoogleMap(
